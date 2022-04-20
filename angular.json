@@ -28,15 +28,15 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/adminlte.min.css",
-              "src/assets/css/all.min.css",
-              "src/assets/css/OverlayScrollbars.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/assets/css/fontaweonse/css/all.min.css",
+              "src/assets/css/OverlayScrollbars.min.css"
             ],
             "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/adminlte.min.js",
-              "src/assets/js/OverlayScrollbars.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "src/assets/js/OverlayScrollbars.min.js"
             ]
           },
           "configurations": {
