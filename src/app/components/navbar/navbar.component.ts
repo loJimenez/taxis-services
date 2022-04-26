@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MainsidebarComponent } from '../mainsidebar/mainsidebar.component';
 
 @Component({
   selector: 'app-navbar',
@@ -7,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  @Input() mainSideBar : MainsidebarComponent;
+  
+
+  constructor() {}
 
   ngOnInit(): void {
-
+    
   }
 
   hamburguerBtn(){
-    let navbar = document.getElementById('navbar');
-    if(navbar) navbar.style.marginLeft = '0';
   }
 
 }
