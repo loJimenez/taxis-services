@@ -7,17 +7,10 @@ import { MainsidebarComponent } from '../mainsidebar/mainsidebar.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  @Input() mainSideBar : MainsidebarComponent;
-  
-
   constructor() {}
 
   ngOnInit(): void {
     
-  }
-
-  hamburguerBtn(){
   }
 
 }
