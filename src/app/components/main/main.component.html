@@ -8,9 +8,7 @@
       <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4">
           <div class="card-body">Primary Card</div>
-          <div
-            class="card-footer d-flex align-items-center justify-content-between"
-          >
+          <div class="card-footer d-flex align-items-center justify-content-between">
             <a class="small text-white stretched-link" href="#">View Details</a>
             <div class="small text-white">
               <i class="fas fa-angle-right"></i>
@@ -21,9 +19,7 @@
       <div class="col-xl-3 col-md-6">
         <div class="card bg-warning text-white mb-4">
           <div class="card-body">Warning Card</div>
-          <div
-            class="card-footer d-flex align-items-center justify-content-between"
-          >
+          <div class="card-footer d-flex align-items-center justify-content-between">
             <a class="small text-white stretched-link" href="#">View Details</a>
             <div class="small text-white">
               <i class="fas fa-angle-right"></i>
@@ -34,9 +30,7 @@
       <div class="col-xl-3 col-md-6">
         <div class="card bg-success text-white mb-4">
           <div class="card-body">Success Card</div>
-          <div
-            class="card-footer d-flex align-items-center justify-content-between"
-          >
+          <div class="card-footer d-flex align-items-center justify-content-between">
             <a class="small text-white stretched-link" href="#">View Details</a>
             <div class="small text-white">
               <i class="fas fa-angle-right"></i>
@@ -47,9 +41,7 @@
       <div class="col-xl-3 col-md-6">
         <div class="card bg-danger text-white mb-4">
           <div class="card-body">Danger Card</div>
-          <div
-            class="card-footer d-flex align-items-center justify-content-between"
-          >
+          <div class="card-footer d-flex align-items-center justify-content-between">
             <a class="small text-white stretched-link" href="#">View Details</a>
             <div class="small text-white">
               <i class="fas fa-angle-right"></i>
@@ -65,7 +57,43 @@
         Listado de titulares
       </div>
       <div class="card-body">
-        <table id="table" class="table">
+        <div class="mat-elevation-z0">
+          <table mat-table [dataSource]="dataSource">
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+  
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+            </ng-container>
+  
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+  
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef>Weight</th>
+              <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+            </ng-container>
+  
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef>Symbol</th>
+              <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+        <!-- <table id="table" class="table">
           <thead>
             <tr>
               <th>Name</th>
@@ -534,7 +562,7 @@
               <td>$112,000</td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       </div>
     </div>
   </div>
