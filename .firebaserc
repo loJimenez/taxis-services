@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "taxi-service-57326": {
+      "hosting": {
+        "taxis-services": [
+          "taxi-service-57326"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "taxi-service-57326"
+  }
+}

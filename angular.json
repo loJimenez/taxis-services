@@ -107,6 +107,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "taxis-services:build:production",
+            "firebaseProject": "taxi-service-57326",
+            "firebaseHostingSite": "taxi-service-57326"
+          }
         }
       }
     }
