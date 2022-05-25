@@ -26,6 +26,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { OwnerComponent } from './components/owner/owner.component';
+import { OwnerService } from './services/owner.services';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { OwnerComponent } from './components/owner/owner.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [OwnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

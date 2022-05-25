@@ -11,7 +11,7 @@ export class OwnerService{
     owner: Observable<Owner>;
 
     constructor(private db: AngularFirestore){
-        this.ownersColection = db.collection('owner', ref => ref.orderBy('nombre', 'asc'));
+        this.ownersColection = db.collection('owner', ref => ref.orderBy('apellido', 'asc'));
     }
 
     getOwners(): Observable<Owner[]>{

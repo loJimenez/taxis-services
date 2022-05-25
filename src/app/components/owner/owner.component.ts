@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Owner } from 'src/app/model/owner.model';
+import { OwnerService } from 'src/app/services/owner.services';
 
 @Component({
   selector: 'app-owner',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OwnerComponent implements OnInit {
 
-  constructor() { }
+  // Creamos los nombres de la columna para la tabla
+  displayedColumns: string[] = ['apellido', 'nombre', 'telefono'];
+  // Fuente de datos
+  dataSource = new MatTableDataSource();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  nfAfterViewInit(){
+    this.dataSource.paginator = this.paginator;
+  }
+
+  constructor(private ownerService: OwnerService) { }
 
   ngOnInit(): void {
+    this.ownerService.getOwners().subscribe(
+      owners => {
+        // Del servicio de Titulares obtenemos los datos de los titulares y los cargamos en dataSource
+        this.dataSource.data = owners;
+      }
+      
+    )  
   }
 
 }
