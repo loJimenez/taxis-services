@@ -11,8 +11,9 @@ import { OwnerService } from 'src/app/services/owner.services';
 })
 export class OwnerComponent implements OnInit {
 
+  owners: Owner[];
   // Creamos los nombres de la columna para la tabla
-  displayedColumns: string[] = ['apellido', 'nombre', 'telefono'];
+  displayedColumns: string[] = ['apellido', 'nombre', 'telefono', 'action'];
   // Fuente de datos
   dataSource = new MatTableDataSource();
 
@@ -29,6 +30,7 @@ export class OwnerComponent implements OnInit {
       owners => {
         // Del servicio de Titulares obtenemos los datos de los titulares y los cargamos en dataSource
         this.dataSource.data = owners;
+        this.owners = owners;                
       }
       
     )  

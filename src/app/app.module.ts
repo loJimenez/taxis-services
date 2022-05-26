@@ -27,6 +27,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { OwnerComponent } from './components/owner/owner.component';
 import { OwnerService } from './services/owner.services';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -45,9 +47,15 @@ import { OwnerService } from './services/owner.services';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+
+    // ANGULAR-MATERIAL
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+
+    // FIREBASE IMPORTS 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
