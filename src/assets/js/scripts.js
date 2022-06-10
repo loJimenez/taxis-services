@@ -7,7 +7,18 @@
 // Scripts
 //
 
-const start = window.addEventListener("DOMContentLoaded", (event) => {
+// If screen of device is small each nav-link close sidenav
+const actionLink = () =>{
+  if (window.innerWidth < 992) {
+    document.querySelectorAll(".closeNav").forEach((item) => {
+      item.addEventListener("click", (event) => {
+        document.body.classList.remove("sb-sidenav-toggled");
+      });
+    });
+  }
+}
+
+window.addEventListener("DOMContentLoaded", (event) => {
   // Toggle the side navigation
   const sidebarToggle = document.body.querySelector("#sidebarToggle");
   if (sidebarToggle) {
@@ -23,18 +34,12 @@ const start = window.addEventListener("DOMContentLoaded", (event) => {
         document.body.classList.contains("sb-sidenav-toggled")
       );
     });
-  };
+  }
 
-  // If screen of device is small each nav-link close sidenav
-  if (window.innerWidth < 992) {
-    document.querySelectorAll('.closeNav').forEach(item => {
-        item.addEventListener('click', event => {
-            document.body.classList.remove("sb-sidenav-toggled");
-        })
-      })
-  };
+  actionLink();
+  
 
+  // When change size of device load conten DOM again to change or not the nav-link actions
+  window.addEventListener('resize', actionLink);
+  
 });
-
-// When change size of device load conten DOM again to change or not the nav-link actions
-window.addEventListener('resize', start);
