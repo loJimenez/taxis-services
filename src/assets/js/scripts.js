@@ -35,9 +35,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       );
     });
   }
-
-  actionLink();
   
+  actionLink();  
 
   // When change size of device load conten DOM again to change or not the nav-link actions
   window.addEventListener('resize', actionLink);
