@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Owner } from 'src/app/model/owner.model';
@@ -12,6 +13,11 @@ import { OwnerService } from 'src/app/services/owner.services';
 export class OwnerComponent implements OnInit {
 
   owners: Owner[];
+  owner : Owner ={
+    nombre: '',
+    apellido: '',
+    telefono: 0,
+  };
   // Creamos los nombres de la columna para la tabla
   displayedColumns: string[] = ['apellido', 'nombre', 'telefono', 'action'];
   // Fuente de datos
@@ -34,6 +40,11 @@ export class OwnerComponent implements OnInit {
       }
       
     )  
+  }
+
+  onSubmit(f: NgForm){
+    console.log(f.valid);
+    console.log(f.value);
   }
 
 }

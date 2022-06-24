@@ -11,7 +11,12 @@
           <i class="fas fa-table me-1"></i>
           Listado de titulares
         </div>
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addOwner">
+        <button
+          type="button"
+          class="btn btn-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#addOwner"
+        >
           <i class="fa-solid fa-user-plus"></i>
           Agregar Titular
         </button>
@@ -56,8 +61,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
-          <mat-paginator [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
+          <mat-paginator
+            [pageSizeOptions]="[2, 5, 10]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+          >
           </mat-paginator>
         </div>
       </div>
@@ -65,34 +73,70 @@
   </div>
 
   <!-- Add Owner Modal  -->
-  <div class="modal fade" id="addOwner" tabindex="-1" aria-labelledby="Agregar Titular" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="addOwner"
+    tabindex="-1"
+    aria-labelledby="Agregar Titular"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Agregar Titular</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form class="modal-form" #ownerForm="ngForm" (ngSubmit)="onSubmit(ownerForm)">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                id="nombre"
+                placeholder="Nombre"
+                #nombre="ngModel"
+                [(ngModel)]="owner.nombre"
+                [ngClass]="{ 'is-invalid': nombre.errors && nombre.touched }"
+                required
+                minlength="2"
+              />
               <label for="nombre">Nombre</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+              <input
+                type="text"
+                class="form-control"
+                id="apellido"
+                placeholder="Apellido"
+              />
               <label for="apellido">Apellido</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="telefono" placeholder="Telefono">
+              <input
+                type="number"
+                class="form-control"
+                id="telefono"
+                placeholder="Telefono"
+              />
               <label for="telefono">Telefono</label>
             </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-dark">Guardar</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-            Cancelar
-          </button>
-          <button type="button" class="btn btn-dark">Guardar</button>
         </div>
       </div>
     </div>
