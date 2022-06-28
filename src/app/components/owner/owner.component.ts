@@ -24,10 +24,7 @@ export class OwnerComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  nfAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
-  }
+  
 
   constructor(private ownerService: OwnerService) { }
 
@@ -36,6 +33,7 @@ export class OwnerComponent implements OnInit {
       owners => {
         // Del servicio de Titulares obtenemos los datos de los titulares y los cargamos en dataSource
         this.dataSource.data = owners;
+        this.dataSource.paginator = this.paginator;
         this.owners = owners;                
       }
       
@@ -43,8 +41,12 @@ export class OwnerComponent implements OnInit {
   }
 
   onSubmit(f: NgForm){
-    console.log(f.valid);
-    console.log(f.value);
+    if(!f.valid){
+
+    }else{
+      this.ownerService.addOwner(f.value);
+      f.resetForm();
+    }
   }
 
 }

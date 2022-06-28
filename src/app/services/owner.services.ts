@@ -28,4 +28,8 @@ export class OwnerService{
         return this.owners;
     }
 
+    addOwner(owner: Owner){
+        this.ownersColection.add(owner);
+    }
+
 }

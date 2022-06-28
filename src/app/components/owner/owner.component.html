@@ -113,7 +113,13 @@
                 type="text"
                 class="form-control"
                 id="apellido"
+                name="apellido"
                 placeholder="Apellido"
+                #apellido="ngModel"
+                [(ngModel)]="owner.apellido"
+                [ngClass]="{ 'is-invalid': apellido.errors && apellido.touched }"
+                required
+                minlength="2"
               />
               <label for="apellido">Apellido</label>
             </div>
@@ -122,7 +128,14 @@
                 type="number"
                 class="form-control"
                 id="telefono"
+                name="telefono"
                 placeholder="Telefono"
+                #telefono="ngModel"
+                [(ngModel)]="owner.telefono"
+                [ngClass]="{ 'is-invalid': telefono.errors && telefono.touched }"
+                value=""
+                required
+                minlength="10"
               />
               <label for="telefono">Telefono</label>
             </div>
