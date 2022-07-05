@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,6 +24,7 @@ export class OwnerComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild("closeButton") closeButton: ElementRef;
   
 
   constructor(private ownerService: OwnerService) { }
@@ -40,13 +41,18 @@ export class OwnerComponent implements OnInit {
     )  
   }
 
-  onSubmit(f: NgForm){
-    if(!f.valid){
+  onSubmit(form: NgForm){
+    if(!form.valid){
 
-    }else{
-      this.ownerService.addOwner(f.value);
-      f.resetForm();
+    }else{      
+      this.ownerService.addOwner(form.value);
+      form.resetForm();
+      this.closeModal();
     }
+  }
+
+  private closeModal(){
+    this.closeButton.nativeElement.click();
   }
 
 }
