@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Owner } from 'src/app/model/owner.model';
 import { OwnerService } from 'src/app/services/owner.services';
 
@@ -27,7 +28,7 @@ export class OwnerComponent implements OnInit {
   @ViewChild("closeButton") closeButton: ElementRef;
   
 
-  constructor(private ownerService: OwnerService) { }
+  constructor(private ownerService: OwnerService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.ownerService.getOwners().subscribe(

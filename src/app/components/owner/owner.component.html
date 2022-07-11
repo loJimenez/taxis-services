@@ -15,7 +15,7 @@
           type="button"
           class="btn btn-dark"
           data-bs-toggle="modal"
-          data-bs-target="#addOwner"
+          data-bs-target="#addEditOwner"
         >
           <i class="fa-solid fa-user-plus"></i>
           Agregar Titular
@@ -49,7 +49,12 @@
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="basic">
+                <button
+                  mat-icon-button
+                  color="basic"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addEditOwner"
+                >
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn">
@@ -72,10 +77,10 @@
     </div>
   </div>
 
-  <!-- Add Owner Modal  -->
+  <!-- Add/Edit Owner Modal  -->
   <div
     class="modal fade"
-    id="addOwner"
+    id="addEditOwner"
     tabindex="-1"
     aria-labelledby="Agregar Titular"
     aria-hidden="true"
@@ -83,7 +88,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Agregar Titular</h5>
+          <h5 class="modal-title">Agregar/Editar Titular</h5>
           <button
             type="button"
             class="btn-close"
@@ -92,7 +97,11 @@
           ></button>
         </div>
         <div class="modal-body">
-          <form class="modal-form" #ownerForm="ngForm" (ngSubmit)="onSubmit(ownerForm)">
+          <form
+            class="modal-form"
+            #ownerForm="ngForm"
+            (ngSubmit)="onSubmit(ownerForm)"
+          >
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -117,7 +126,9 @@
                 placeholder="Apellido"
                 #apellido="ngModel"
                 [(ngModel)]="owner.apellido"
-                [ngClass]="{ 'is-invalid': apellido.errors && apellido.touched }"
+                [ngClass]="{
+                  'is-invalid': apellido.errors && apellido.touched
+                }"
                 required
                 minlength="2"
               />
@@ -132,7 +143,9 @@
                 placeholder="Telefono"
                 #telefono="ngModel"
                 [(ngModel)]="owner.telefono"
-                [ngClass]="{ 'is-invalid': telefono.errors && telefono.touched }"
+                [ngClass]="{
+                  'is-invalid': telefono.errors && telefono.touched
+                }"
                 value=""
                 required
                 minlength="10"
