@@ -19,6 +19,14 @@ export class OwnerComponent implements OnInit {
     apellido: '',
     telefono: 0,
   };
+
+  ownerEdit : Owner ={
+    nombre: '',
+    apellido: '',
+    telefono: 0,
+  };
+
+  id: String;
   // Creamos los nombres de la columna para la tabla
   displayedColumns: string[] = ['apellido', 'nombre', 'telefono', 'action'];
   // Fuente de datos
@@ -26,6 +34,7 @@ export class OwnerComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild("closeButton") closeButton: ElementRef;
+  @ViewChild("closeButtonEdit") closeButtonEdit: ElementRef;
   
 
   constructor(private ownerService: OwnerService, private router: Router, private route: ActivatedRoute) { }
@@ -41,7 +50,7 @@ export class OwnerComponent implements OnInit {
       
     )  
   }
-
+// Add Owner
   onSubmit(form: NgForm){
     if(!form.valid){
 
@@ -54,6 +63,34 @@ export class OwnerComponent implements OnInit {
 
   private closeModal(){
     this.closeButton.nativeElement.click();
+  }
+
+  private closeModalEdit(){
+    this.closeButtonEdit.nativeElement.click();
+  }
+
+  // Edit Owner 
+  editOwner(id: string){
+    this.id = id;
+    this.ownerService.getOwner(id).subscribe((owner: Owner) => {
+      this.ownerEdit = owner;
+    })
+  }
+
+  onSave(form: NgForm){
+    if(!form.valid){
+
+    }else{    
+      form.value.id = this.id;
+      this.ownerService.editOwner(form.value);      
+      this.closeModalEdit();
+    }
+  }
+
+  deleteOwner(){
+    if(confirm('¿Seguro que desea eliminar el Titula?')){
+      this.ownerService.deleteOwner(this.ownerEdit);
+    }
   }
 
 }

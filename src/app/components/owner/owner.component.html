@@ -15,7 +15,7 @@
           type="button"
           class="btn btn-dark"
           data-bs-toggle="modal"
-          data-bs-target="#addEditOwner"
+          data-bs-target="#addOwner"
         >
           <i class="fa-solid fa-user-plus"></i>
           Agregar Titular
@@ -53,12 +53,10 @@
                   mat-icon-button
                   color="basic"
                   data-bs-toggle="modal"
-                  data-bs-target="#addEditOwner"
+                  data-bs-target="#editOwner"
+                  (click)="editOwner(element.id)"
                 >
                   <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn">
-                  <mat-icon>delete</mat-icon>
                 </button>
               </td>
             </ng-container>
@@ -77,10 +75,10 @@
     </div>
   </div>
 
-  <!-- Add/Edit Owner Modal  -->
+  <!-- Add Owner Modal  -->
   <div
     class="modal fade"
-    id="addEditOwner"
+    id="addOwner"
     tabindex="-1"
     aria-labelledby="Agregar Titular"
     aria-hidden="true"
@@ -88,7 +86,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Agregar/Editar Titular</h5>
+          <h5 class="modal-title">Agregar Titular</h5>
           <button
             type="button"
             class="btn-close"
@@ -160,6 +158,99 @@
                 #closeButton
               >
                 Cancelar
+              </button>
+              <button type="submit" class="btn btn-dark">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Owner Modal -->
+  <div
+    class="modal fade"
+    id="editOwner"
+    tabindex="-1"
+    aria-labelledby="Editar Titular"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Titular</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            #closeButtonEdit
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            class="modal-form"
+            #ownerFormEdit="ngForm"
+            (ngSubmit)="onSave(ownerFormEdit)"
+          >
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                id="nombre"
+                placeholder="Nombre"
+                #nombre="ngModel"
+                [(ngModel)]="ownerEdit.nombre"
+                [ngClass]="{ 'is-invalid': nombre.errors && nombre.touched }"
+                required
+                minlength="2"
+              />
+              <label for="nombre">Nombre</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="apellido"
+                name="apellido"
+                placeholder="Apellido"
+                #apellido="ngModel"
+                [(ngModel)]="ownerEdit.apellido"
+                [ngClass]="{
+                  'is-invalid': apellido.errors && apellido.touched
+                }"
+                required
+                minlength="2"
+              />
+              <label for="apellido">Apellido</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="number"
+                class="form-control"
+                id="telefono"
+                name="telefono"
+                placeholder="Telefono"
+                #telefono="ngModel"
+                [(ngModel)]="ownerEdit.telefono"
+                [ngClass]="{
+                  'is-invalid': telefono.errors && telefono.touched
+                }"
+                value=""
+                required
+                minlength="10"
+              />
+              <label for="telefono">Telefono</label>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+                (click)="deleteOwner()"
+              >
+                Eliminar
               </button>
               <button type="submit" class="btn btn-dark">Guardar</button>
             </div>
