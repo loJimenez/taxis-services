@@ -29,6 +29,7 @@ import { OwnerComponent } from './components/owner/owner.component';
 import { OwnerService } from './services/owner.services';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { LoginService } from './services/login.services';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import {MatIconModule} from '@angular/material/icon';
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
-  providers: [OwnerService],
+  providers: [OwnerService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
